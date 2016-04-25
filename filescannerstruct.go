@@ -1,7 +1,7 @@
 /*
 Small golang example for creation of struct and methods to read a file
 */
-package filescanner
+package filescannerstruct
 
 import (
 	"bufio"
@@ -9,7 +9,9 @@ import (
 	"os"
 )
 
-var passwordfile string = "passwords.txt"
+var wordlistfile string = "all.lst"
+
+var pattern string = "pattern"
 
 /*
 struct for passwords file scan, with methods
@@ -45,14 +47,14 @@ func (f *fileScanner) GetScan() *bufio.Scanner {
 	return f.Scanner
 }
 
-func filescanner() {
+func filescannerstruct() {
 	fscanner := NewFileScanner()
-	err := fscanner.Open(passwordfile)
+	err := fscanner.Open(wordlistfile)
 	if err == nil {
 		scanner := fscanner.GetScan()
 		for scanner.Scan() {
 			line := scanner.Text()
-			if line == "Okm00okm" {
+			if line == pattern {
 				fmt.Println(line)
 				fscanner.Close()
 			}
