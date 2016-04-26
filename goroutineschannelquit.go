@@ -61,12 +61,12 @@ func (f *Worker) run() {
 		select {
 		case <-f.quit:
 			fmt.Println("finishing task")
-			time.Sleep(time.Second)
+			time.Sleep(100 * time.Millisecond)
 			fmt.Println("task done")
 			f.quit <- true
 			return
 		case <-time.After(time.Second):
-			fmt.Println("still running task")
+			fmt.Println("running search task")
 		}
 	}
 }
@@ -78,6 +78,8 @@ func (f *Worker) Stop() {
 	fmt.Println("server stopped")
 }
 
+var evaluate string = "Not Found"
+
 func goroutineschannelquit() {
 	runner := NewWorker()
 	fscanner := NewFileScanner()
@@ -87,15 +89,22 @@ func goroutineschannelquit() {
 		for scanner.Scan() {
 			value := scanner.Text()
 			if value == pattern {
+				evaluate = "Found"
 				end := time.Now()
 				d := end.Sub(initTime)
 				duration := d.Seconds()
-				fmt.Printf("pattern found: %s\n", value)
+				fmt.Printf("+++ pattern found: %s +++\n", value)
 				fmt.Printf("completed in %v senconds\n", strconv.FormatFloat(duration, 'g', -1, 64))
 				runner.Stop()
 			}
 		}
+		if evaluate == "Not Found" {
+			fmt.Println("--- Not found in file ---")
+		}
 		fscanner.Close()
-		//time.Sleep(1 * time.Second)
+		finish := time.Now()
+		f := finish.Sub(initTime)
+		fduration := f.Seconds()
+		fmt.Printf("goroutines completed in %v senconds\n", strconv.FormatFloat(fduration, 'g', -1, 64))
 	}
 }
