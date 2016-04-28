@@ -1,6 +1,6 @@
 /*
-golang example to tell goroutines to stop after you found the value you were
-searching in a large wordlist file.
+golang example to find a pattern in a text file, using goroutines and a worker
+with channels and select cases.
 */
 package goroutineschannelquit
 
@@ -84,7 +84,9 @@ func goroutineschannelquit() {
 	runner := NewWorker()
 	fscanner := NewFileScanner()
 	err := fscanner.Open(wordlistfile)
-	if err == nil {
+	if err != nil {
+		fmt.Println("Error trying to open the file: ", err.Error())
+	} else {
 		scanner := fscanner.GetScan()
 		for scanner.Scan() {
 			value := scanner.Text()
