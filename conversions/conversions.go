@@ -18,9 +18,9 @@ func main() {
 	// show every string in a slice except for the first "0"
 	nonFirstStringInSlice := slice[1:]
 	// convert every element in slice to a slice of quoted strings
-	cmdargs := []string{}
+	quotedSlice := []string{}
 	for _, i := range slice {
-		cmdargs = append(cmdargs, strconv.Quote(i))
+		quotedSlice = append(quotedSlice, strconv.Quote(i))
 	}
 	// convert string to bytes slice
 	stringToBytes := []byte(input)
@@ -28,9 +28,10 @@ func main() {
 	bytesToString := string(stringToBytes)
 	fmt.Println("input:", input)
 	fmt.Println("slice:", slice)
+	fmt.Println("replaced:", replaced)
 	fmt.Println("firstStringInSlice:", firstStringInSlice)
 	fmt.Println("nonFirstStringInSlice:", nonFirstStringInSlice)
-	fmt.Println("replaced:", replaced)
+	fmt.Println("quotedSlice:", quotedSlice)
 	fmt.Println("stringToBytes:", stringToBytes)
 	fmt.Println("bytesToString:", bytesToString)
 }
