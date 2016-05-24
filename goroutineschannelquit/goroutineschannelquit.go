@@ -2,7 +2,7 @@
 golang example to find a pattern in a text file, using goroutines and a worker
 with channels and select cases.
 */
-package goroutineschannelquit
+package main
 
 import (
 	"bufio"
@@ -80,7 +80,7 @@ func (f *Worker) Stop() {
 
 var evaluate string = "Not Found"
 
-func goroutineschannelquit() {
+func main() {
 	runner := NewWorker()
 	fscanner := NewFileScanner()
 	err := fscanner.Open(wordlistfile)
