@@ -4,9 +4,11 @@ import (
 	"fmt"
 	"strconv"
 	"strings"
+	"time"
 )
 
 var input string = "this is a string"
+var timeInput time.Time = time.Now()
 
 func main() {
 	// convert string to slice of strings
@@ -26,6 +28,13 @@ func main() {
 	stringToBytes := []byte(input)
 	// convert bytes slice to a string
 	bytesToString := string(stringToBytes)
+	// convert time format to RFC3339
+	timeInputToRFC3339 := timeInput.Format(time.RFC3339)
+	// convert to unix time format
+	timeInputToUnix := timeInput.Unix()
+	// not really converting, but get the timeframe between timeInput and this timePeriodSeconds execution
+	timePeriodSeconds := time.Since(timeInput).Seconds()
+
 	fmt.Println("input:", input)
 	fmt.Println("slice:", slice)
 	fmt.Println("replaced:", replaced)
@@ -34,4 +43,8 @@ func main() {
 	fmt.Println("quotedSlice:", quotedSlice)
 	fmt.Println("stringToBytes:", stringToBytes)
 	fmt.Println("bytesToString:", bytesToString)
+	fmt.Println("timeInput:", timeInput)
+	fmt.Println("timeInputToRFC3339:", timeInputToRFC3339)
+	fmt.Println("timeInputToUnix:", timeInputToUnix)
+	fmt.Println("timePeriodSeconds:", timePeriodSeconds)
 }
