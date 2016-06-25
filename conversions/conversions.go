@@ -2,13 +2,15 @@ package main
 
 import (
 	"fmt"
+	"reflect"
 	"strconv"
 	"strings"
 	"time"
 )
 
-var input string = "this is a string"
-var timeInput time.Time = time.Now()
+var input = "this is a string"
+var numstring = "-50"
+var timeInput = time.Now()
 
 func main() {
 	// convert string to slice of strings
@@ -34,9 +36,11 @@ func main() {
 	timeInputToUnix := timeInput.Unix()
 	// not really converting, but get the timeframe between timeInput and this timePeriodSeconds execution
 	timePeriodSeconds := time.Since(timeInput).Seconds()
+	// convert string to int
+	numstringtoint, _ := strconv.Atoi(numstring)
 
-	fmt.Println("input:", input)
-	fmt.Println("slice:", slice)
+	fmt.Println("input:", input, "|| type:", reflect.TypeOf(input))
+	fmt.Println("slice:", slice, "|| type:", reflect.TypeOf(slice))
 	fmt.Println("replaced:", replaced)
 	fmt.Println("firstStringInSlice:", firstStringInSlice)
 	fmt.Println("nonFirstStringInSlice:", nonFirstStringInSlice)
@@ -47,4 +51,6 @@ func main() {
 	fmt.Println("timeInputToRFC3339:", timeInputToRFC3339)
 	fmt.Println("timeInputToUnix:", timeInputToUnix)
 	fmt.Println("timePeriodSeconds:", timePeriodSeconds)
+	fmt.Println("numstring:", numstring, "|| type:", reflect.TypeOf(numstring))
+	fmt.Println("numstringtoint:", numstringtoint, "|| type:", reflect.TypeOf(numstringtoint))
 }
