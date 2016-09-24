@@ -20,7 +20,7 @@ func main() {
 	home := os.Getenv("HOME")
 	os.Setenv("PATH", "/usr/bin:/sbin")
 	cmd1.Cmd, cmd1.Args = "ls", []string{"-la", home}
-	cmd2.Cmd, cmd2.Args = "date", []string{""}
+	cmd2.Cmd = "date"
 	cmd3.Cmd, cmd3.Args = "df", []string{"-h"}
 	var cmds = []Command{cmd1, cmd2, cmd3}
 	for _, item := range cmds {
