@@ -12,7 +12,8 @@ func notfound(w http.ResponseWriter, r *http.Request) {
 
 func newrouter() *mux.Router {
 	r := mux.NewRouter().StrictSlash(false)
-	r.HandleFunc("/api/name/{name}", returnname).Methods("GET")
+	r.HandleFunc("/api/name", getnames).Methods("GET")
+	r.HandleFunc("/api/name", postname).Methods("POST")
 	r.NotFoundHandler = http.HandlerFunc(notfound)
 	return r
 }
