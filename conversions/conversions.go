@@ -1,3 +1,6 @@
+/*
+Golang examples for my most regular conversions.
+*/
 package main
 
 import (
@@ -10,9 +13,13 @@ import (
 
 var input = "this is a string"
 var numstring = "-50"
-var timeInput = time.Now()
 
-func main() {
+const longForm = "Jan 2, 2006 at 3:04pm (MST)"
+
+var timeInput, _ = time.Parse(longForm, "Jan 21, 2017 at 3:30am (VET)")
+var time4since, _ = time.Parse(longForm, "Jan 22, 2017 at 2:30am (VET)")
+
+func runGeneralConversions() {
 	// convert string to slice of strings
 	slice := strings.Split(input, " ")
 	// replace all the space caracthers with comma in a string
@@ -30,12 +37,6 @@ func main() {
 	stringToBytes := []byte(input)
 	// convert bytes slice to a string
 	bytesToString := string(stringToBytes)
-	// convert time format to RFC3339
-	timeInputToRFC3339 := timeInput.Format(time.RFC3339)
-	// convert to unix time format
-	timeInputToUnix := timeInput.Unix()
-	// not really converting, but get the timeframe between timeInput and this timePeriodSeconds execution
-	timePeriodSeconds := time.Since(timeInput).Seconds()
 	// convert string to int
 	numstringtoint, _ := strconv.Atoi(numstring)
 
@@ -47,10 +48,28 @@ func main() {
 	fmt.Println("quotedSlice:", quotedSlice)
 	fmt.Println("stringToBytes:", stringToBytes)
 	fmt.Println("bytesToString:", bytesToString)
+	fmt.Println("numstring:", numstring, "|| type:", reflect.TypeOf(numstring))
+	fmt.Println("numstringtoint:", numstringtoint, "|| type:", reflect.TypeOf(numstringtoint))
+}
+
+func runTimeConversions() {
+	// convert time format to RFC3339
+	timeInputToRFC3339 := timeInput.Format(time.RFC3339)
+	// convert to unix time format
+	timeInputToUnix := timeInput.Unix()
 	fmt.Println("timeInput:", timeInput)
 	fmt.Println("timeInputToRFC3339:", timeInputToRFC3339)
 	fmt.Println("timeInputToUnix:", timeInputToUnix)
+}
+
+func runNotRealConversion() {
+	// not really converting, but get the timeframe between timeInput and this timePeriodSeconds execution
+	timePeriodSeconds := time.Since(timeInput).Seconds()
 	fmt.Println("timePeriodSeconds:", timePeriodSeconds)
-	fmt.Println("numstring:", numstring, "|| type:", reflect.TypeOf(numstring))
-	fmt.Println("numstringtoint:", numstringtoint, "|| type:", reflect.TypeOf(numstringtoint))
+}
+
+func main() {
+	runGeneralConversions()
+	runTimeConversions()
+	runNotRealConversion()
 }
