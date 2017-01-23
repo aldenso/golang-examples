@@ -5,6 +5,7 @@ func Example1() {
 	//Output:
 	//input: this is a string || type: string
 	//slice: [this is a string] || type: []string
+	//newstring: this-is-a-string || type: string
 	//replaced: this,is,a,string
 	//firstStringInSlice: this
 	//nonFirstStringInSlice: [is a string]

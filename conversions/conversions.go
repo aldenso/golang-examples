@@ -22,6 +22,8 @@ var time4since, _ = time.Parse(longForm, "Jan 22, 2017 at 2:30am (VET)")
 func runGeneralConversions() {
 	// convert string to slice of strings
 	slice := strings.Split(input, " ")
+	// convert slice to string
+	newstring := strings.Join(slice, "-")
 	// replace all the space caracthers with comma in a string
 	replaced := strings.Replace(input, " ", ",", -1)
 	// show only first string in a slice of strings
@@ -42,6 +44,7 @@ func runGeneralConversions() {
 
 	fmt.Println("input:", input, "|| type:", reflect.TypeOf(input))
 	fmt.Println("slice:", slice, "|| type:", reflect.TypeOf(slice))
+	fmt.Println("newstring:", newstring, "|| type:", reflect.TypeOf(newstring))
 	fmt.Println("replaced:", replaced)
 	fmt.Println("firstStringInSlice:", firstStringInSlice)
 	fmt.Println("nonFirstStringInSlice:", nonFirstStringInSlice)
