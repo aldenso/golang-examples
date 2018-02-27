@@ -21,9 +21,9 @@ func getUserInput() error {
 	fmt.Println("Getting user input")
 	var answer string
 	fmt.Println("input (N|n - Y|y - anykey):")
-	n, err := fmt.Scanf("%s\n", &answer)
+	_, err := fmt.Scanf("%s\n", &answer)
 	if err != nil {
-		fmt.Println(n, err)
+		return err
 	}
 	switch {
 	case answer == "N" || answer == "n":
